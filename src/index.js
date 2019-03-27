@@ -34,8 +34,12 @@ app.get('/crearcurso', (req, res) => {
 app.post('/crearcurso', async (req, res) => {
   const { id, nombre, descripcion, valor, modalidad, intensidad, estado } = req.body;
   await crearCurso(id, nombre, descripcion, valor, modalidad, intensidad, estado);
-  res.render('cursos', {mensaje: mensaje});
-})
+  res.render('cursos', { mensaje: mensaje });
+});
+
+app.get('/cursosdisponibles', (req, res) => {
+  res.render('cursosdisponibles', { titulo: 'Cursos Disponibles' });
+});
 
 const PORT = process.env.PORT || 4500;
 
