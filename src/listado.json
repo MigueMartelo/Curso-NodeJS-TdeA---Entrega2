@@ -1,0 +1,28 @@
+ [{
+     "ID": 1,
+     "nombre": "Programacion 1",
+     "descripcion": "Curso de programación básica",
+     "valor": 500000,
+     "modalidad": "Virtual",
+     "intensidad": 30,
+     "estado": "disponible"
+   },
+   {
+     "ID": 2,
+     "nombre": "Programacion 2",
+     "descripcion": "Curso de programación básica +",
+     "valor": 550000,
+     "modalidad": "Virtual",
+     "intensidad": 30,
+     "estado": "disponible"
+   },
+   {
+     "ID": 3,
+     "nombre": "Programacion 3",
+     "descripcion": "Curso de programación avanzada",
+     "valor": 600000,
+     "modalidad": "Virtual",
+     "intensidad": 30,
+     "estado": "disponible"
+   }
+ ]

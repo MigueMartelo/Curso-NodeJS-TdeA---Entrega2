@@ -4,7 +4,7 @@
   "description": "Segunda entrega - curso nodejs TdeA",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src/index.js"
+    "start": "nodemon src/index.js"
   },
   "author": "Miguel Martelo",
   "license": "ISC",
