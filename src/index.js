@@ -2,7 +2,7 @@ const express = require('express');
 const hbs = require('hbs');
 const path = require('path');
 const bodyParser = require('body-parser');
-const { crearCurso } = require('./funciones');
+const { crearCurso, inscribirUsuario } = require('./funciones');
 require('./helpers');
 
 const app = express();
@@ -38,7 +38,21 @@ app.post('/crearcurso', async (req, res) => {
 });
 
 app.get('/cursosdisponibles', (req, res) => {
-  res.render('cursosdisponibles', { titulo: 'Cursos Disponibles' });
+  res.render('cursosdisponibles', { titulo: 'Cursos Disponibles para Inscripción' });
+});
+
+app.get('/inscribir', (req, res) => {
+  res.render('inscribir', { titulo: "Incribir a Curso" });
+});
+
+app.post('/inscribir', async (req, res) => {
+  const { doc_identidad, nombre, email, telefono, nombre_curso } = req.body;
+  await inscribirUsuario(doc_identidad, nombre, email, telefono, nombre_curso);
+  res.render('inscritos', { mensaje: mensaje });
+});
+
+app.get('/inscritos', (req, res) => {
+  res.render('inscritos', { titulo: "Usuarios Inscritos" });
 });
 
 const PORT = process.env.PORT || 4500;
