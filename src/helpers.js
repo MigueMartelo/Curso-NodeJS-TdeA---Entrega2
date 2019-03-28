@@ -34,7 +34,16 @@ hbs.registerHelper('listarCursos', () => {
                   <td>$${curso.valor}</td>
                   <td>${curso.modalidad}</td>
                   <td>${curso.intensidad}</td>
-                  <td>${curso.estado}</td>
+                  <td>
+                    ${curso.estado} 
+                    <form class="form-inline" action="/cambiarestado" method="post">
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-warning" name="cursoId" value=${curso.id}>
+                          Cambiar Estado
+                        </button>
+                      </div>
+                    </form>
+                  </td>
                 </tr>`
     });
   
@@ -53,7 +62,9 @@ hbs.registerHelper('cursosDisponibles', () => {
     texto = `<p class="alert alert-warning">No hay cursos disponibles para inscripción actualmente</p>`;
     return texto;
   } else {
+    
     cursosDisponibles.forEach(curso => {
+      
       texto += `<div class="col-md-4 mb-2">
                   <div class="card">
                     <h5 class="card-header">${curso.nombre}</h5>
@@ -86,8 +97,8 @@ hbs.registerHelper('cursosDisponibles', () => {
                   </div>
                 </div>`
         ;
-      return texto;
-    });
+    }); 
+    return texto;
   }
 });
 
@@ -97,7 +108,7 @@ hbs.registerHelper('cursosInscribir', () => {
   let texto = '';
 
   cursosDisponibles.forEach(curso => {
-    texto += `<option value=${curso.nombre}>${curso.nombre}</option>`;
+    texto += `<option value="${curso.nombre}">${curso.nombre}</option>`;
   });
 
   return texto;
@@ -113,6 +124,7 @@ hbs.registerHelper('listarInscritos', () => {
                     <th scope="col">Email</th>
                     <th scope="col">Teléfono</th>
                     <th scope="col">Curso</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -127,11 +139,20 @@ hbs.registerHelper('listarInscritos', () => {
                   <td>${usuario.nombre}</td>
                   <td>${usuario.doc_identidad}</td>
                   <td>${usuario.email}</td>
-                  <td>$${usuario.telefono}</td>
+                  <td>${usuario.telefono}</td>
                   <td>${usuario.nombre_curso}</td>
+                  <td>
+                    <form class="form-inline" action="/eliminar" method="post">
+                      <div class="form-group">
+                        <input type="hidden" name="nombre_curso" value="${usuario.nombre_curso}"/>
+                        <button type="submit" class="btn btn-danger" name="userdoc" value=${usuario.doc_identidad}>
+                          Eliminar
+                        </button>
+                      </div>
+                    </form>
+                  </td>
                 </tr>`
     });
-  
     texto += `</tbody></table>`;
   }
 
