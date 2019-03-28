@@ -74,9 +74,9 @@ app.post('/cambiarestado', (req, res) => {
   res.render('cursos', { mensaje: mensaje });
 });
 
-app.post('/eliminar', async (req, res) => {
-  const mensajeF = await eliminarInscrito(req.body.userdoc, req.body.nombre_curso);
-  res.render('inscritos', { mensaje: mensajeF });
+app.post('/eliminar', (req, res) => {
+  eliminarInscrito(req.body.userdoc, req.body.nombre_curso);
+  res.render('inscritos', { mensaje: mensaje });
 });
 
 const PORT = process.env.PORT || 4500;

@@ -23,7 +23,9 @@ const crearCurso = (cursoNuevo) => {
 
 const inscribirUsuario = (usuarioNuevo) => {
   
-  let userDup = usuarios.find(usuario => usuario.nombre_curso === usuarioNuevo.nombre_curso);
+  let userDup = usuarios.find(usuario => {
+    return usuario.nombre_curso === usuarioNuevo.nombre_curso && usuario.doc_identidad === usuarioNuevo.doc_identidad
+  });
   mensaje = '';
   
   if (userDup) {
