@@ -91,6 +91,7 @@ hbs.registerHelper('cursosDisponibles', () => {
                         <h6>Valor: $${curso.valor}</h6>
                       </div>
                       <div class="modal-footer">
+                        <a href="/inscribir" class="btn btn-success">Inscribir</a>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                       </div>
                     </div>

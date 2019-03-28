@@ -9,3 +9,5 @@ Para iniciar el proyecto ejecutar:
 
 Luego
 ### `npm start`
+
+Para ver el listado de cursos como coordinador, arriba en el menú opción "cursos" y para ver el listado como interesado la tarjeta del home "Cursos Disponibles"

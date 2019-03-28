@@ -37,7 +37,7 @@ const inscribirUsuario = (usuarioNuevo) => {
       if (err) throw (err);
       console.log('Archivo creado correctamente');
     });
-    return mensaje = `<p class="alert alert-success text-center">El usuario <strong>${usuarioNuevo.nombre}</strong> fue inscrito correctamente en el curso ${usuarioNuevo.nombre_curso}</p>`;
+    return mensaje = `<p class="alert alert-success text-center">El usuario <strong>${usuarioNuevo.nombre}</strong> fue inscrito correctamente en el curso <strong>${usuarioNuevo.nombre_curso}</strong></p>`;
   }
 }
 
