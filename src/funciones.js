@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 cursos = require('./listado.json');
-usuarios = require('./usuarios.json');
+
 
 const crearCurso = (cursoNuevo) => {
   
@@ -22,6 +22,7 @@ const crearCurso = (cursoNuevo) => {
 }
 
 const inscribirUsuario = (usuarioNuevo) => {
+  usuarios = require('./usuarios.json');
   
   let userDup = usuarios.find(usuario => {
     return usuario.nombre_curso === usuarioNuevo.nombre_curso && usuario.doc_identidad === usuarioNuevo.doc_identidad
@@ -57,6 +58,8 @@ const cambiarEstado = (idCurso) => {
 }
 
 const eliminarInscrito = (docUsuario, nombre_curso) => {
+  usuarios = require('./usuarios.json');
+  console.log(usuarios)
   let usuariosN = usuarios.filter(usuario => {
     return usuario.doc_identidad !== docUsuario || usuario.nombre_curso !== nombre_curso;
   });
@@ -65,6 +68,7 @@ const eliminarInscrito = (docUsuario, nombre_curso) => {
     if (err) throw (err);
     console.log('Archivo creado correctamente');
   });
+  console.log(usuarios)
   return mensaje = '<p class="alert alert-danger text-center">El estudiante ha sido eliminado correctamente</p>';
 }
 

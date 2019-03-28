@@ -1,7 +1,6 @@
 const hbs = require('hbs');
 
 cursos = require('./listado.json');
-usuarios = require('./usuarios.json');
 
 const fs = require('fs');
 
@@ -116,7 +115,7 @@ hbs.registerHelper('cursosInscribir', () => {
 });
 
 hbs.registerHelper('listarInscritos', () => {
-  
+  usuarios = require('./usuarios.json');
   let texto = `<table class="table table-bordered table-striped">
                 <thead class="thead-dark">
                   <tr>
