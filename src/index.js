@@ -51,7 +51,7 @@ app.get('/cursosdisponibles', (req, res) => {
 
 app.post('/cambiarestado', (req, res) => {
   cambiarEstado(req.body.cursoId);
-  res.render('cursos', { mensaje: mensaje });
+  res.render('cursos', { mensaje: mensaje, titulo: "Listado de cursos" });
 });
 
 app.get('/inscribir', (req, res) => {
