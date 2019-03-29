@@ -1,9 +1,7 @@
 const fs = require('fs');
 
-cursos = require('./listado.json');
-
-
 const crearCurso = (cursoNuevo) => {
+  let cursos = require('./listado.json');
   
   let duplicado = cursos.find(curso => curso.id === cursoNuevo.id);
   mensaje = '';
@@ -21,8 +19,25 @@ const crearCurso = (cursoNuevo) => {
   }
 }
 
+const cambiarEstado = (idCurso) => {
+  let cursos = require('./listado.json');
+
+  let cursoActualizar = cursos.find(curso => curso.id === idCurso);
+  if (cursoActualizar) {
+    cursoActualizar.estado = (cursoActualizar.estado === 'Disponible') ? 'Cerrado' : 'Disponible';
+    let cursosN = JSON.stringify(cursos);
+    fs.writeFile('./src/listado.json', cursosN, (err) => {
+      if (err) throw (err);
+      console.log('Archivo creado correctamente');
+    });
+    return mensaje = '<p class="alert alert-success text-center">El curso a cambiado de estado correctamente</p>';
+  } else {
+    return mensaje = '<p class="alert alert-danger text-center">Curso no encontrado</p>';
+  }
+}
+
 const inscribirUsuario = (usuarioNuevo) => {
-  usuarios = require('./usuarios.json');
+  let usuarios = require('./usuarios.json');
   
   let userDup = usuarios.find(usuario => {
     return usuario.nombre_curso === usuarioNuevo.nombre_curso && usuario.doc_identidad === usuarioNuevo.doc_identidad
@@ -42,33 +57,16 @@ const inscribirUsuario = (usuarioNuevo) => {
   }
 }
 
-const cambiarEstado = (idCurso) => {
-  let cursoActualizar = cursos.find(curso => curso.id === idCurso);
-  if (cursoActualizar) {
-    cursoActualizar.estado = (cursoActualizar.estado === 'Disponible') ? 'Cerrado' : 'Disponible';
-    let cursosN = JSON.stringify(cursos);
-    fs.writeFile('./src/listado.json', cursosN, (err) => {
-      if (err) throw (err);
-      console.log('Archivo creado correctamente');
-    });
-    return mensaje = '<p class="alert alert-success text-center">El curso a cambiado de estado correctamente</p>';
-  } else {
-    return mensaje = '<p class="alert alert-danger text-center">Curso no encontrado</p>';
-  }
-}
-
-const eliminarInscrito = (docUsuario, nombre_curso) => {
-  usuarios = require('./usuarios.json');
-  console.log(usuarios)
-  let usuariosN = usuarios.filter(usuario => {
-    return usuario.doc_identidad !== docUsuario || usuario.nombre_curso !== nombre_curso;
-  });
-  usuariosN = JSON.stringify(usuariosN);
+const eliminarInscrito = (userId) => {
+  let usuarios = JSON.parse(fs.readFileSync('./src/usuarios.json'));
+  
+  usuarios = usuarios.filter(usuario => usuario.id !== userId);
+  
+  let usuariosN = JSON.stringify(usuarios);
   fs.writeFile('./src/usuarios.json', usuariosN, (err) => {
     if (err) throw (err);
     console.log('Archivo creado correctamente');
   });
-  console.log(usuarios)
   return mensaje = '<p class="alert alert-danger text-center">El estudiante ha sido eliminado correctamente</p>';
 }
 

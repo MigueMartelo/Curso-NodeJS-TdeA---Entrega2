@@ -1,10 +1,9 @@
 const hbs = require('hbs');
 
-cursos = require('./listado.json');
-
 const fs = require('fs');
 
 hbs.registerHelper('listarCursos', () => {
+  let cursos = require('./listado.json');
   
   let texto = `<table class="table table-bordered table-striped">
                 <thead class="thead-dark">
@@ -53,6 +52,8 @@ hbs.registerHelper('listarCursos', () => {
 });
 
 hbs.registerHelper('cursosDisponibles', () => {
+  let cursos = require('./listado.json');
+
   const cursosDisponibles = cursos.filter(curso => curso.estado === 'Disponible');
 
   let texto = '';
@@ -103,6 +104,8 @@ hbs.registerHelper('cursosDisponibles', () => {
 });
 
 hbs.registerHelper('cursosInscribir', () => {
+  let cursos = require('./listado.json');
+
   const cursosDisponibles = cursos.filter(curso => curso.estado === 'Disponible');
 
   let texto = '';
@@ -115,7 +118,9 @@ hbs.registerHelper('cursosInscribir', () => {
 });
 
 hbs.registerHelper('listarInscritos', () => {
-  usuarios = require('./usuarios.json');
+  console.log('entra a listarInscritos');
+  let usuarios = JSON.parse(fs.readFileSync('./src/usuarios.json'));
+
   let texto = `<table class="table table-bordered table-striped">
                 <thead class="thead-dark">
                   <tr>
@@ -142,10 +147,9 @@ hbs.registerHelper('listarInscritos', () => {
                   <td>${usuario.telefono}</td>
                   <td>${usuario.nombre_curso}</td>
                   <td>
-                    <form class="form-inline" action="/eliminar" method="post">
-                      <div class="form-group">
-                        <input type="hidden" name="nombre_curso" value="${usuario.nombre_curso}"/>
-                        <button type="submit" class="btn btn-danger" name="userdoc" value=${usuario.doc_identidad}>
+                    <form class="form-inline" action="/eliminar" method="POST">
+                      <div class="form-group">                        
+                        <button type="submit" class="btn btn-danger" name="userId" value=${usuario.id}>
                           Eliminar
                         </button>
                       </div>
