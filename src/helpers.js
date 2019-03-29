@@ -117,8 +117,7 @@ hbs.registerHelper('cursosInscribir', () => {
   return texto;
 });
 
-hbs.registerHelper('listarInscritos', () => {
-  console.log('entra a listarInscritos');
+hbs.registerHelper('listarInscritos', () => {  
   let usuarios = JSON.parse(fs.readFileSync('./src/usuarios.json'));
 
   let texto = `<table class="table table-bordered table-striped">
