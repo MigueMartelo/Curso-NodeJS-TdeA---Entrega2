@@ -73,16 +73,11 @@ app.post('/inscribir', (req, res) => {
   };
   inscribirUsuario(usuarioNuevo);
   res.render('inscritos', { mensaje: mensaje, titulo: "Usuarios Inscritos" });
-  let users = require('./usuarios.json');
-  console.log('render inscribir', users);
 });
 
 app.post('/eliminar', (req, res) => {
   eliminarInscrito(parseInt(req.body.userId));
-  //res.redirect('/inscritos');
-  res.render('inscritos', { mensaje: mensaje, titulo: "Usuarios Inscritos" });
-  let users = require('./usuarios.json');
-  console.log('Hizo al render', users);
+  res.render('inscritos', { mensaje: mensaje, titulo: "Usuarios Inscritos" });  
 });
 
 const PORT = process.env.PORT || 4500;
