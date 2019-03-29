@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const crearCurso = (cursoNuevo) => {
-  let cursos = JSON.parse(fs.readFileSync('./src/listado.json'));
+  let cursos = require('./listado');
   
   let duplicado = cursos.find(curso => curso.id === cursoNuevo.id);
   mensaje = '';
@@ -20,7 +20,7 @@ const crearCurso = (cursoNuevo) => {
 }
 
 const cambiarEstado = (idCurso) => {  
-  let cursos = JSON.parse(fs.readFileSync('./src/listado.json'));
+  let cursos = require('./listado');
 
   let cursoActualizar = cursos.find(curso => curso.id === idCurso);
   if (cursoActualizar) {
